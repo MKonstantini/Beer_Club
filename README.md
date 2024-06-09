@@ -12,6 +12,8 @@ Includes authentication and database.
 
 - Next JS (v.14)
 - Next Auth
-- Tailwind
 - Prisma
 - Supabase
+- Tailwind
+- ShadCN
+- Lucide
