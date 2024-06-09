@@ -1,7 +1,6 @@
-
 const Home = () => {
   return (
-    <div>meaningless code</div>
+    <div>beer club</div>
   )
 }
 
