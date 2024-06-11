@@ -14,6 +14,7 @@ Includes authentication and database.
 - Next Auth
 - Prisma
 - Supabase
+- Bcrypt
 - Tailwind
 - ShadCN
 - Lucide
