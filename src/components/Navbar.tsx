@@ -6,10 +6,10 @@ import { MenuIcon } from 'lucide-react'
 
 const Navbar = () => {
     return (
-        <nav className="fixed top-0 w-full bg-white border border-black">
+        <nav className="fixed top-0 w-full border border-black">
             <div className="md:max-w-screen-2xl w-full mx-auto p-5 flex justify-between items-center">
                 {/* Logo */}
-                <Button variant={'none'} asChild className="flex items-center gap-5 w-52">
+                <Button variant={'none'} asChild className="flex items-center gap-5 md:w-52">
                     <Link href={'/'}>
                         <Image src={'BeerClub_Logo.svg'} width={50} height={50} alt="logo" />
                         <p className="font-bold text-lg hidden sm:block">BEER CLUB</p>
