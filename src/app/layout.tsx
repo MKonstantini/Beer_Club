@@ -4,7 +4,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "BEER CLUB",
-  description: "Uncap the Adventure",
+  description: "Uncap Your Next Adventure",
   icons: "/BeerClub_Logo.svg"
 };
 
@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="pt-24 bg-slate-100">
+      <body className="pt-24 bg-slate-200">
         <main className="h-full">
           <Navbar />
           {children}

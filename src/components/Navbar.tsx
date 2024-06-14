@@ -12,7 +12,7 @@ const Navbar = () => {
                 <Button variant={'none'} asChild className="flex items-center gap-5 md:w-52">
                     <Link href={'/'}>
                         <Image src={'BeerClub_Logo.svg'} width={50} height={50} alt="logo" />
-                        <p className="font-bold text-lg hidden sm:block">BEER CLUB</p>
+                        <p className=" text-black font-bold text-lg hidden sm:block">BEER CLUB</p>
                     </Link>
                 </Button>
 
@@ -32,10 +32,10 @@ const Navbar = () => {
                 {/* Left Buttons */}
                 <div className="flex items-center justify-end w-52">
                     <Button variant={'black'} size={'lg'} asChild>
-                        <Link href={'/login'}>LOGIN</Link>
+                        <Link href={'/signin'}>LOGIN</Link>
                     </Button>
                     <Button variant={'none'} className="lg:hidden">
-                        <MenuIcon className="ms-5" onClick={() => document.getElementById('mobile-menu')?.classList.toggle('hidden')} />
+                        <MenuIcon className="ms-5 text-black" onClick={() => document.getElementById('mobile-menu')?.classList.toggle('hidden')} />
                     </Button>
                 </div>
             </div>
@@ -43,13 +43,13 @@ const Navbar = () => {
             <div id="mobile-menu" className="hidden">
                 {/* Mobile Menu */}
                 <div className="flex flex-col lg:hidden">
-                    <Button variant={'black'} asChild className="w-100 h-24">
+                    <Button variant={'black'} asChild className="w-100 h-24 rounded-none">
                         <Link href={'/'}>HOME</Link>
                     </Button>
-                    <Button variant={'black'} asChild className="w-100 h-24">
+                    <Button variant={'black'} asChild className="w-100 h-24 rounded-none">
                         <Link href={'/dashboard'}>DASHBOARD</Link>
                     </Button>
-                    <Button variant={'black'} asChild className="w-100 h-24">
+                    <Button variant={'black'} asChild className="w-100 h-24 rounded-none">
                         <Link href={'/shop'}>SHOP</Link>
                     </Button>
                 </div>

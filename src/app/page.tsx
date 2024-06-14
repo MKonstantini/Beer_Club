@@ -9,7 +9,7 @@ const myFont = Archivo_Black({
   weight: ['400'],
 });
 
-const Home = () => {
+const HomePage = () => {
   return (
     <div className="h-full pb-20 flex flex-col justify-center items-center text-center mx-6">
       <div className="mb-12 flex items center border shadow-md p-4 bg-amber-400 rounded-full uppercase">
@@ -22,10 +22,10 @@ const Home = () => {
         <h2 className="text-xl bg-gradient-to-r from-fuchsia-600 to-pink-600 text-white rounded-lg w-fit p-2 pb-4 px-4 mt-4">Uncap Your Next Adventure</h2>
       </div>
 
-      <Image src="/BeerClub_Logo.svg" width={200} height={200} alt="Logo" />
-      <Button variant="black" size={'lg'} className="mt-14">Join The Family</Button>
+      <Image src="/BeerClub_Logo.svg" width={240} height={240} alt="Logo" />
+      <Button variant="black" size={'lg'} className="mt-14">JOIN THE FAMILY</Button>
     </div>
   )
 }
 
-export default Home
+export default HomePage
