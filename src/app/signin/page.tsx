@@ -1,9 +1,16 @@
+"use client";
+import { useSession } from "next-auth/react";
+
 const SignInPage = () => {
-    return (
-        <div>
-            can you... feel the heat?
-        </div>
-    )
+    const { data: session } = useSession()
+
+    if (session) {
+        return (
+            <div>
+                can you... feel the heat?
+            </div>
+        )
+    }
 }
 
 export default SignInPage
