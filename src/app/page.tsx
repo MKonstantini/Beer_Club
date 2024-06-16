@@ -22,7 +22,7 @@ const HomePage = () => {
         <h2 className="text-xl bg-gradient-to-r from-fuchsia-600 to-pink-600 text-white rounded-lg w-fit p-2 pb-4 px-4 mt-4">Uncap Your Next Adventure</h2>
       </div>
 
-      <Image src="/BeerClub_Logo.svg" width={240} height={240} alt="Logo" />
+      <Image src="/icons/BeerClub_Logo.svg" width={240} height={240} alt="Logo" />
       <Button variant="black" size={'lg'} className="mt-14">JOIN THE FAMILY</Button>
     </div>
   )

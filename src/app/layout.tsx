@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/navbar/Navbar";
 import "./globals.css";
 import AuthProvider from "@/components/AuthProvider";
 
 export const metadata: Metadata = {
   title: "BEER CLUB",
   description: "Uncap Your Next Adventure",
-  icons: "/BeerClub_Logo.svg"
+  icons: "/icons/BeerClub_Logo.svg"
 };
 
 export default function RootLayout({
@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AuthProvider>
-        <body className="pt-24 bg-slate-200">
+        <body className="pt-24 bg-slate-300">
           <main className="h-full">
             <Navbar />
             {children}
