@@ -27,6 +27,17 @@ export const options: NextAuthOptions = {
           throw new Error("User not found.");
         }
         return user;
+
+        // const user = await validateUser(
+        //   credentials.email,
+        //   credentials.password
+        // );
+
+        // if (user) {
+        //   return user;
+        // } else {
+        //   return null; // Invalid credentials
+        // }
       },
     }),
   ],

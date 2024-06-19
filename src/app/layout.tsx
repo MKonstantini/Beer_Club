@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AuthProvider>
-        <body className="pt-24 bg-slate-300">
+        <body className="pt-24 bg-slate-200">
           <main className="h-full">
             <Navbar />
             {children}

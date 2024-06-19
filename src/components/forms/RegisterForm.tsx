@@ -1,13 +1,4 @@
-"use clinet"
-
-import { signIn } from "next-auth/react";
-import Image from "next/image";
-import { ChangeEvent, FormEvent, useState } from "react";
-import { Button } from "../ui/button";
-import { redirect } from "next/navigation";
-import Link from "next/link";
-
-const LoginForm = () => {
+const RegisterForm = () => {
     const [form, setForm] = useState({
         email: "",
         password: "",
@@ -91,5 +82,3 @@ const LoginForm = () => {
         </div>
     )
 }
-
-export default LoginForm
