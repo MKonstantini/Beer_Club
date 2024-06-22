@@ -71,7 +71,7 @@ const LoginForm = () => {
                     />
                 </div>
 
-                <div className="text-center font-bold mt-2 text-red-700">
+                <div className="text-center font-bold mt-2 text-red-600">
                     {error && <p>Error: {error} </p>}
                 </div>
 
@@ -81,7 +81,7 @@ const LoginForm = () => {
                 <div className="text-center mt-2 mb-5">___________________________</div>
 
                 <div className="flex justify-center">
-                    <Button type="button" onClick={() => redirect('/register')} variant={'black'} className="mt-2">
+                    <Button type="button" variant={'black'} className="mt-2">
                         <Link href={"/register"}>
                             New User? Create An Account
                         </Link>

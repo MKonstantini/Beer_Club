@@ -1,3 +1,12 @@
+"use clinet"
+
+import { ChangeEvent, FormEvent, useState } from "react";
+import { Button } from "../ui/button";
+import { redirect } from "next/navigation";
+import { signIn } from "next-auth/react";
+import Link from "next/link";
+import { createNewUser } from "@/services/fetch-users";
+
 const RegisterForm = () => {
     const [form, setForm] = useState({
         email: "",
@@ -12,32 +21,27 @@ const RegisterForm = () => {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         try {
-            const result = await signIn('credentials', { redirect: false, ...form });
+            const user = await createNewUser(form);
+            console.log('user created successfully', user)
 
+            const result = await signIn('credentials', { redirect: false, ...form });
             if (!result!.error) {
                 // Successful login (handle user navigation or state updates)
                 redirect('/')
             } else {
                 setError(result!.error);
             }
-        } catch (error) {
-            console.error('Login error:', error);
-            setError('An unexpected error occurred.');
+
+        } catch (error: any) {
+            setError(error.message || "An unexpected error occurred.");
         }
     };
 
     // Component
     return (
         <div className="flex flex-col items-center">
-            {/* Google SignIn */}
-            <button onClick={() => signIn("google")} className=" bg-white flex gap-5 p-5 rounded-lg hover:bg-slate-100">
-                <Image width={25} height={25} src="/icons/google.svg" alt="google icon" />
-                Login With Google
-            </button>
-            <div className="text-center mt-5 mb-5">___________________________</div>
-
-            {/* Credentials SignIn */}
-            <h1 className="font-bold text-center">Login With Email</h1>
+            {/* Credentials Register */}
+            <h1 className="font-bold text-center">Create An Account</h1>
             <form onSubmit={handleSubmit} className="flex justify-center flex-col">
                 <div className="text-center mt-5 flex flex-col sm:flex-row">
                     <label htmlFor="email" className="mb-1 sm:me-12">Email</label>
@@ -67,14 +71,14 @@ const RegisterForm = () => {
                 </div>
 
                 <div className="flex justify-center mt-5">
-                    <Button type="submit" variant={'black'}>Login</Button>
+                    <Button type="submit" variant={'black'}>Register</Button>
                 </div>
                 <div className="text-center mt-2 mb-5">___________________________</div>
 
                 <div className="flex justify-center">
-                    <Button type="button" onClick={() => redirect('/register')} variant={'black'} className="mt-2">
-                        <Link href={"/register"}>
-                            New User? Create An Account
+                    <Button type="button" variant={'black'} className="mt-2">
+                        <Link href={"/login"}>
+                            Already A User? Login
                         </Link>
                     </Button>
                 </div>
@@ -82,3 +86,5 @@ const RegisterForm = () => {
         </div>
     )
 }
+
+export default RegisterForm

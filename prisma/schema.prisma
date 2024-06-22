@@ -7,8 +7,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum UserType {
+  REGULAR
+  PREMIUM
+  ADMIN
+}
+
 model User {
   id    String  @id @default(uuid())
+  type UserType @default(REGULAR)
+
   email String  @unique
   password  String?
+  birthday DateTime?
+
+  createDate DateTime @default(now())
+  updateDate DateTime @updatedAt
+}
+
+model Product {
+  id String @id @default(uuid())
+
+  name String @unique
+  price Decimal
+  isOnSale Boolean @default(false)
+  
+  createDate DateTime @default(now())
+  updateDate DateTime @updatedAt
 }

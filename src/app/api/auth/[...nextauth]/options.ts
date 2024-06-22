@@ -1,6 +1,8 @@
+import { getUserByEmail } from "@/services/fetch-users";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import bcrypt from "bcryptjs";
 
 export const options: NextAuthOptions = {
   pages: { signIn: "/signin" },
@@ -20,24 +22,33 @@ export const options: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        let user = null;
+        try {
+          if (!credentials || !credentials.email) {
+            throw new Error("Invalid Credentials Format");
+          }
 
-        //user = await getUserFromDb(credentials!.email, pwHash);
-        if (!user) {
-          throw new Error("User not found.");
+          const user = await getUserByEmail(
+            credentials.email.toLocaleLowerCase()
+          );
+
+          if (!user) {
+            throw new Error("Incorrect email or password.");
+          }
+
+          const isPasswordCorrect = await bcrypt.compare(
+            credentials.password,
+            user.password!
+          );
+
+          if (!isPasswordCorrect) {
+            throw new Error("Incorrect email or password.");
+          }
+
+          return user;
+        } catch (error) {
+          console.log(error);
+          throw error;
         }
-        return user;
-
-        // const user = await validateUser(
-        //   credentials.email,
-        //   credentials.password
-        // );
-
-        // if (user) {
-        //   return user;
-        // } else {
-        //   return null; // Invalid credentials
-        // }
       },
     }),
   ],
