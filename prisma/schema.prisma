@@ -22,7 +22,7 @@ model User {
   birthday DateTime?
 
   createDate DateTime @default(now())
-  updateDate DateTime @updatedAt
+  updateDate DateTime? @updatedAt
 }
 
 model Product {
@@ -33,5 +33,5 @@ model Product {
   isOnSale Boolean @default(false)
   
   createDate DateTime @default(now())
-  updateDate DateTime @updatedAt
+  updateDate DateTime? @updatedAt
 }

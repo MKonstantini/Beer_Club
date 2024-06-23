@@ -34,7 +34,7 @@ const DashboardPage = () => {
                     <p> {session.user?.email}</p>
                 </div>
             </section>
-            <Button className="mt-12" variant={"black"}>Update User Info</Button>
+            <Button className="mt-12" variant={"black"} onClick={() => console.log(session)}>Update User Info</Button>
         </div>
     )
 }
