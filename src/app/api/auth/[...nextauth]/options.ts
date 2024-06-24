@@ -70,5 +70,35 @@ export const options: NextAuthOptions = {
       });
       return session;
     },
+    async signIn({ user, profile, account }: any) {
+      let email = user?.email || profile?.email;
+      try {
+        const existingUser = await getUserByEmail(email?.toLowerCase()).catch(
+          (err) => {
+            throw new err();
+          }
+        );
+
+        switch (account.provider) {
+          case "google":
+            if (!existingUser) {
+              await db.user.create({
+                data: {
+                  email: profile.email.toLowerCase(),
+                  password: "",
+                },
+              });
+              return true;
+            }
+            return true;
+          default:
+            return true;
+        }
+      } catch (err) {
+        console.log(err);
+        throw err;
+        return false;
+      }
+    },
   },
 };
