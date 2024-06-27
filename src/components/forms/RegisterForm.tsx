@@ -77,7 +77,7 @@ const RegisterForm = () => {
 
                 <div className="flex justify-center">
                     <Button type="button" variant={'black'} className="mt-2">
-                        <Link href={"/login"}>
+                        <Link href={"/signin"}>
                             Already A User? Login
                         </Link>
                     </Button>

@@ -5,15 +5,13 @@ import { ProductType } from "@/services/fetch-products";
 
 const ShopPage = () => {
     const [products, setProducts] = useState<ProductType[]>([])
+    const fetchData = async () => {
+        const fetchedItems = await getAllProducts();
+        setProducts(fetchedItems);
+    };
 
     useEffect(() => {
-        const fetchData = async () => {
-            const fetchedItems = await getAllProducts();
-            setProducts(fetchedItems);
-        };
-
         fetchData();
-        console.log(products)
     }, []);
 
     return (
@@ -28,4 +26,3 @@ const ShopPage = () => {
 };
 
 export default ShopPage;
-
