@@ -23,7 +23,7 @@ const HomePage = () => {
       </div>
 
       <div className="mb-12 flex flex-col items-center">
-        <h1 className={cn("mb-6 text-5xl md:text-6xl text-neutral-800", TitleFont.className)}>BEER CLUB</h1>
+        <h1 className={cn("mb-6 text-5xl md:text-6xl text-neutral-900", TitleFont.className)}>BEER CLUB</h1>
         <h2 className="text-xl bg-gradient-to-r from-fuchsia-600 to-pink-600 text-white rounded-lg w-fit p-2 pb-4 px-4 mt-4">Uncap Your Next Adventure</h2>
       </div>
 

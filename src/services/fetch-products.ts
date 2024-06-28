@@ -9,6 +9,7 @@ export type ProductType = {
   isOnSale: boolean;
   createDate: Date;
   updateDate: Date | null;
+  img_reference: string | null;
 };
 
 // GET

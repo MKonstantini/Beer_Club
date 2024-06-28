@@ -8,7 +8,7 @@ import AuthButton from "./AuthButton"
 
 const Navbar = () => {
     return (
-        <nav className="fixed top-0 w-full border border-black">
+        <nav className="fixed top-0 z-50 w-full border border-black bg-slate-200">
             <div className="md:max-w-screen-2xl w-full mx-auto h-24 px-5 flex justify-between items-center">
                 {/* Logo */}
                 <Button variant={'none'} asChild className="flex items-center gap-5 md:w-52">
