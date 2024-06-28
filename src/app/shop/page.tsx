@@ -2,6 +2,7 @@
 import { getAllProducts } from "@/services/fetch-products";
 import { useEffect, useState } from "react";
 import { ProductType } from "@/services/fetch-products";
+import ProductCard from "./ProductCard";
 
 const ShopPage = () => {
     const [products, setProducts] = useState<ProductType[]>([])
@@ -16,11 +17,13 @@ const ShopPage = () => {
 
     return (
         <div>
-            {products.length > 0 ? (
-                <p>{products[0].name}</p>
-            ) : (
-                <h1>No shop items yet.</h1>
-            )}
+            {products.length > 0 ?
+                (
+                    ProductCard(products[0])
+                ) :
+                (
+                    <h1>No shop items yet.</h1>
+                )}
         </div>
     );
 };

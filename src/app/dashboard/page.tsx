@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 import { useSession } from "next-auth/react"
 import { Archivo_Black } from "next/font/google";
 import { redirect } from "next/navigation";
-import { User } from "lucide-react"
 import { Button } from "@/components/ui/button";
 import UserCard from "./UserCard";
 
@@ -39,7 +38,7 @@ const DashboardPage = () => {
                     </>
             }
             {
-                session.user.type == "ADMIN" &&
+                session.user!.type == "ADMIN" &&
                 <>
                     <h1>Admin Tools</h1>
                     <Button className="mt-12" variant={"black"}>Go To Admin Tools Page</Button>
