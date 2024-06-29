@@ -25,6 +25,7 @@ model Product {
   createDate    DateTime  @default(now())
   updateDate    DateTime? @updatedAt
   img_reference String?
+  detail        String?
 }
 
 enum UserType {

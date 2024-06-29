@@ -6,6 +6,7 @@ export type ProductType = {
   id: string;
   name: string;
   price: Decimal;
+  detail: string | null;
   isOnSale: boolean;
   createDate: Date;
   updateDate: Date | null;
