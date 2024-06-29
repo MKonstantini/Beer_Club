@@ -75,7 +75,7 @@ const ShopPage = () => {
                             ))
                         }
                     </div>
-                    <CartDrawer cart={cart} />
+                    <CartDrawer cart={cart} updateCartQuantity={updateCartQuantity} />
                 </>
             )}
         </div>

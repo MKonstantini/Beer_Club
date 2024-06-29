@@ -1,3 +1,4 @@
+import { ProductType } from "@/services/fetch-products";
 import { Archivo_Black } from "next/font/google";
 import { Button } from "@/components/ui/button"
 import { ShoppingCart } from "lucide-react";
@@ -22,7 +23,12 @@ const TitleFont = Archivo_Black({
     weight: ['400'],
 });
 
-const CartDrawer: React.FC<{ cart: CartItem[] }> = ({ cart }) => {
+interface CartDrawerProps {
+    cart: CartItem[];
+    updateCartQuantity: (productId: string, newQuantity: number) => void
+}
+
+const CartDrawer: React.FC<CartDrawerProps> = ({ cart, updateCartQuantity }) => {
     return (
         <Drawer>
             <DrawerTrigger className="p-5 mb-12 w-1/2 md:w-1/3 bg-slate-100 shadow-lg rounded-t-full">
@@ -39,7 +45,7 @@ const CartDrawer: React.FC<{ cart: CartItem[] }> = ({ cart }) => {
                         {
                             cart.length > 0 ?
                                 <div className="w-2/3 h-full flex flex-col justify-between items-center">
-                                    <CartTable cart={cart} />
+                                    <CartTable cart={cart} updateCartQuantity={updateCartQuantity} />
                                     <Button variant={'black'} className="hover:bg-white my-6 md:w-1/2">Continue To Purchase</Button>
                                 </div>
                                 : <div>Cart Is Empty.</div>
@@ -51,7 +57,7 @@ const CartDrawer: React.FC<{ cart: CartItem[] }> = ({ cart }) => {
     )
 }
 
-const CartTable: React.FC<{ cart: CartItem[] }> = ({ cart }) => {
+const CartTable: React.FC<CartDrawerProps> = ({ cart, updateCartQuantity }) => {
     return (
         <Table>
             <TableHeader>
@@ -71,9 +77,9 @@ const CartTable: React.FC<{ cart: CartItem[] }> = ({ cart }) => {
                             <TableCell>{item.quantity}</TableCell>
                             <TableCell>
                                 <div className="flex justify-center gap-3">
-                                    <Button variant={'outline'}>-</Button>
-                                    <Button variant={'outline'}>+</Button>
-                                    <Button variant={'outline'} className="text-red-700 font-bold hover:text-red-700">x</Button>
+                                    <Button variant={'outline'} onClick={() => updateCartQuantity(item.product.id, item.quantity - 1)}>-</Button>
+                                    <Button variant={'outline'} onClick={() => updateCartQuantity(item.product.id, item.quantity + 1)}>+</Button>
+                                    <Button variant={'outline'} onClick={() => updateCartQuantity(item.product.id, 0)} className="text-red-700 font-bold hover:text-red-700">x</Button>
                                 </div>
                             </TableCell>
                         </TableRow>
