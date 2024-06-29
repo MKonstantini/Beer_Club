@@ -45,10 +45,6 @@ const ShopPage = () => {
             );
         }
     };
-    const calculateCartTotal = () => {
-        return cart.reduce((totalPrice, item) => totalPrice + item.product.price.toNumber() * item.quantity, 0);
-    };
-
 
     const fetchData = async () => {
         const fetchedItems = await getAllProducts();
