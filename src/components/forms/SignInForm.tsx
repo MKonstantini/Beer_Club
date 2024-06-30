@@ -1,6 +1,6 @@
 "use clinet"
 
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Button } from "../ui/button";
@@ -14,7 +14,6 @@ const LoginForm = () => {
     });
     const [error, setError] = useState<string | null>(null);
 
-    // Functions
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
@@ -24,7 +23,6 @@ const LoginForm = () => {
             const result = await signIn('credentials', { redirect: false, ...form });
 
             if (!result!.error) {
-                // Successful login (handle user navigation or state updates)
                 redirect('/')
             } else {
                 setError(result!.error);
@@ -35,7 +33,6 @@ const LoginForm = () => {
         }
     };
 
-    // Component
     return (
         <div className="flex flex-col items-center">
             {/* Google SignIn */}

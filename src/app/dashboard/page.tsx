@@ -1,15 +1,10 @@
 "use client"
-import { Archivo_Black } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
+import { TitleFont } from "@/lib/fonts";
 import UserCard from "./UserCard";
 import { cn } from "@/lib/utils";
-
-const TitleFont = Archivo_Black({
-    subsets: ['latin'],
-    weight: ['400'],
-});
 
 const DashboardPage = () => {
     const { data: session } = useSession()

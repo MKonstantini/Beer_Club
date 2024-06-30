@@ -1,16 +1,11 @@
 "use client"
 import { getAllProducts } from "@/services/fetch-products";
-import { useEffect, useState } from "react";
 import { ProductType } from "@/services/fetch-products";
+import { useEffect, useState } from "react";
+import { TitleFont } from "@/lib/fonts";
 import ProductCard from "./ProductCard";
-import { Archivo_Black } from "next/font/google";
-import { cn } from "@/lib/utils";
 import CartDrawer from "./CartDrawer";
-
-const TitleFont = Archivo_Black({
-    subsets: ['latin'],
-    weight: ['400'],
-});
+import { cn } from "@/lib/utils";
 
 export interface CartItem {
     product: ProductType;
@@ -37,7 +32,6 @@ const ShopPage = () => {
             // remove from cart if 0
             setCart(cart.filter((item) => item.product.id !== productId));
         } else {
-            // update quantity for existing item
             setCart(
                 cart.map((item) =>
                     item.product.id === productId ? { ...item, quantity: newQuantity } : item

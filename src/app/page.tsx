@@ -1,16 +1,11 @@
 "use client";
-import { Medal } from "lucide-react"
-import Image from "next/image"
-import { cn } from "@/lib/utils"
-import { Archivo_Black } from "next/font/google"
 import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
+import { TitleFont } from "@/lib/fonts";
+import { Medal } from "lucide-react"
+import { cn } from "@/lib/utils"
+import Image from "next/image"
 import Link from "next/link";
-
-const TitleFont = Archivo_Black({
-  subsets: ['latin'],
-  weight: ['400'],
-});
 
 const HomePage = () => {
   const { data: session } = useSession()

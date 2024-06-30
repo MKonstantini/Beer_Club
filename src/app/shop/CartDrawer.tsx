@@ -1,7 +1,6 @@
-import { ProductType } from "@/services/fetch-products";
-import { Archivo_Black } from "next/font/google";
 import { Button } from "@/components/ui/button"
 import { ShoppingCart } from "lucide-react";
+import { TitleFont } from "@/lib/fonts";
 import { CartItem } from "./page";
 import { cn } from "@/lib/utils"
 import {
@@ -17,11 +16,6 @@ import {
     DrawerContent,
     Drawer,
 } from "@/components/ui/drawer"
-
-const TitleFont = Archivo_Black({
-    subsets: ['latin'],
-    weight: ['400'],
-});
 
 interface CartDrawerProps {
     cart: CartItem[];
