@@ -14,30 +14,26 @@ const RegisterForm = () => {
     });
     const [error, setError] = useState<string | null>(null);
 
-    // Functions
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
-    const handleSubmit = async (e: FormEvent) => {
-        e.preventDefault();
+    const handleSubmit = async (event: FormEvent) => {
+        event.preventDefault();
         try {
             const user = await createNewUser(form);
             console.log('user created successfully', user)
 
             const result = await signIn('credentials', { redirect: false, ...form });
             if (!result!.error) {
-                // Successful login (handle user navigation or state updates)
                 redirect('/')
             } else {
                 setError(result!.error);
             }
-
         } catch (error: any) {
             setError(error.message || "An unexpected error occurred.");
         }
     };
 
-    // Component
     return (
         <div className="flex flex-col items-center">
             {/* Credentials Register */}

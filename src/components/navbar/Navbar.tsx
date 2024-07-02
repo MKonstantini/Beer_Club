@@ -5,8 +5,13 @@ import AuthButton from "./AuthButton"
 import { Button } from "../ui/button"
 import Image from "next/image"
 import Link from "next/link"
+import { redirect } from 'next/navigation'
+import { useSession } from 'next-auth/react'
+import { toast } from 'sonner'
 
 const Navbar = () => {
+    const { data: session } = useSession()
+
     return (
         <nav className="fixed top-0 z-50 w-full border border-black bg-slate-200">
             <div className="md:max-w-screen-2xl w-full mx-auto h-24 px-5 flex justify-between items-center">
@@ -23,8 +28,12 @@ const Navbar = () => {
                     <Button variant={'black'} size={'lg'} asChild className="mx-5">
                         <Link href={'/'}>HOME</Link>
                     </Button>
-                    <Button variant={'black'} size={'lg'} asChild className="mx-5">
-                        <Link href={'/dashboard'}>DASHBOARD</Link>
+                    <Button variant={'black'} size={'lg'} className="mx-5" onClick={() => {
+                        session ?
+                            redirect('dashboard')
+                            : toast("Please login to access this feature!")
+                    }}>
+                        DASHBOARD
                     </Button>
                     <Button variant={'black'} size={'lg'} asChild className="mx-5">
                         <Link href={'/shop'}>SHOP</Link>

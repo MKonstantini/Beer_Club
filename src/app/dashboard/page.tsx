@@ -10,10 +10,11 @@ const DashboardPage = () => {
     const { data: session } = useSession()
 
     if (!session) {
-        redirect("/")
+        redirect('/')
     }
+
     return (
-        <div className="flex flex-col justify-center items-center mt-10 text-center">
+        session && <div className="flex flex-col justify-center items-center mt-10 text-center">
             <header className="mb-6">
                 <div className="mb-6 flex justify-center border shadow-sm p-2 bg-amber-400 rounded-full uppercase">
                     <p>Your Settings, Your Way</p>

@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
-import Navbar from "@/components/navbar/Navbar";
-import "./globals.css";
 import AuthProvider from "@/components/AuthProvider";
+import Navbar from "@/components/navbar/Navbar";
+import type { Metadata } from "next";
+import { Toaster } from 'sonner';
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "BEER CLUB",
@@ -19,6 +20,7 @@ export default function RootLayout({
       <AuthProvider>
         <body className="pt-24 bg-slate-200">
           <main className="h-full">
+            <Toaster position="top-right" />
             <Navbar />
             {children}
           </main>
