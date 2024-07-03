@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { ShoppingCart } from "lucide-react"
 import { useState } from "react"
 import Image from "next/image"
+import { toast } from "sonner"
 
 interface ProductCardProps {
     product: ProductType;
@@ -37,7 +38,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, addToCart }) => {
                                 <button onClick={() => amount < 12 && setAmount(amount + 1)} className="bg-neutral-900 px-2 text-white rounded-e-full">+</button>
                             </div>
                         </div>
-                        <Button className="w-full mb-1  text-center" variant={"outline"} onClick={() => addToCart(product, amount)}>
+                        <Button className="w-full mb-1  text-center" variant={"outline"} onClick={() => { addToCart(product, amount); toast("Item(s) added to cart.") }}>
                             <ShoppingCart className="me-3" />
                             Add To Cart
                         </Button>

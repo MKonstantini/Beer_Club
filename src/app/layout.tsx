@@ -20,7 +20,7 @@ export default function RootLayout({
       <AuthProvider>
         <body className="pt-24 bg-slate-200">
           <main className="h-full">
-            <Toaster position="top-right" />
+            <Toaster position="top-right" toastOptions={{ className: "text-lg", duration: 2000 }} />
             <Navbar />
             {children}
           </main>

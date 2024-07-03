@@ -1,5 +1,9 @@
+"use client"
+import { toast } from "sonner"
 import { Button } from "../ui/button"
 import { useSession, signIn, signOut } from "next-auth/react"
+import Link from "next/link"
+import { redirect } from "next/navigation"
 
 const AuthButton = () => {
     const { data: session } = useSession()
@@ -12,8 +16,14 @@ const AuthButton = () => {
         )
     }
     return (
-        <Button variant={'black'} size={'lg'} onClick={() => signOut()}>
-            LOGOUT
+        <Button variant={'black'} size={'lg'} onClick={() => {
+            // toast("Logout Successful");
+            signOut();
+            redirect('/');
+        }}>
+            <Link href={'/'}>
+                LOGOUT
+            </Link>
         </Button>
     )
 

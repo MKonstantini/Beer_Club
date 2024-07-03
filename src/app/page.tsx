@@ -6,7 +6,6 @@ import { Medal } from "lucide-react"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
 import Link from "next/link";
-import { toast } from "sonner";
 
 const HomePage = () => {
   const { data: session } = useSession()
@@ -29,9 +28,6 @@ const HomePage = () => {
           <Link href={"/signin"}>JOIN THE FAMILY</Link>
         </Button>
       }
-      <Button variant={"destructive"} onClick={() => toast("testing toaster")}>
-        test
-      </Button>
     </div>
   )
 }

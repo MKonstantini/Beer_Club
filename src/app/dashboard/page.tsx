@@ -35,11 +35,11 @@ const DashboardPage = () => {
                     </>
             }
             {
-                session.user!.type == "ADMIN" &&
-                <>
-                    <h1>Admin Tools</h1>
-                    <Button className="mt-12" variant={"black"}>Go To Admin Tools Page</Button>
-                </>
+                // session.user!.type == "ADMIN" &&
+                // <>
+                //     <h1>Admin Tools</h1>
+                //     <Button className="mt-12" variant={"black"}>Go To Admin Tools Page</Button>
+                // </>
             }
         </div>
     )

@@ -28,19 +28,22 @@ const Navbar = () => {
                     <Button variant={'black'} size={'lg'} asChild className="mx-5">
                         <Link href={'/'}>HOME</Link>
                     </Button>
-                    <Button variant={'black'} size={'lg'} className="mx-5" onClick={() => {
-                        session ?
-                            redirect('dashboard')
-                            : toast("Please login to access this feature!")
-                    }}>
-                        DASHBOARD
+                    <Button variant={'black'} size={'lg'} className="mx-5">
+                        {session ? (
+                            <Link href={'/dashboard'}>DASHBOARD</Link>
+                        ) : (
+                            <span onClick={() => toast.error("Please login to access this feature!")}>
+                                DASHBOARD
+                            </span>
+                        )}
+
                     </Button>
                     <Button variant={'black'} size={'lg'} asChild className="mx-5">
                         <Link href={'/shop'}>SHOP</Link>
                     </Button>
                 </div>
 
-                {/* Left Buttons */}
+                {/* Right Buttons */}
                 <div className="flex items-center justify-end w-52">
                     <AuthButton />
                     <Button variant={'none'} className="lg:hidden">
