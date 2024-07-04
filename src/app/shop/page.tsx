@@ -6,6 +6,7 @@ import { TitleFont } from "@/lib/fonts";
 import ProductCard from "./ProductCard";
 import CartDrawer from "./CartDrawer";
 import { cn } from "@/lib/utils";
+import SkeletonCard from "./SkeletonCard";
 
 export interface CartItem {
     product: ProductType;
@@ -16,6 +17,7 @@ const ShopPage = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [products, setProducts] = useState<ProductType[]>([]);
 
+    // Cart state + functions
     const [cart, setCart] = useState<CartItem[]>([])
     const addToCart = (product: ProductType, amount: number) => {
         const existingItem = cart.find((item) => item.product.id === product.id);
@@ -29,7 +31,7 @@ const ShopPage = () => {
     };
     const updateCartQuantity = (productId: string, newQuantity: number) => {
         if (newQuantity <= 0) {
-            // remove from cart if 0
+            // remove from cart:
             setCart(cart.filter((item) => item.product.id !== productId));
         } else {
             setCart(
@@ -59,7 +61,7 @@ const ShopPage = () => {
                 <h1 className={cn("mb-6 text-5xl text-neutral-900", TitleFont.className)}>SHOP</h1>
             </header>
             {isLoading ? (
-                <h1>Loading store...</h1>
+                <SkeletonCard amount={6} />
             ) : (
                 <>
                     <div className="w-3/4 mb-20 flex justify-center gap-10 flex-wrap">
