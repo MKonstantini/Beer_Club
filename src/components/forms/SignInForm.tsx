@@ -14,21 +14,22 @@ const LoginForm = () => {
     });
     const [error, setError] = useState<string | null>(null);
 
+    // form functions
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         try {
-            const result = await signIn('credentials', { redirect: false, ...form });
-
-            if (!result!.error) {
-                redirect('/')
+            const loginData = await signIn('credentials', { redirect: false, ...form });
+            if (loginData?.error) {
+                setError(loginData.error)
+                return
             } else {
-                setError(result!.error);
+                redirect('/')
             }
-        } catch (error) {
-            console.error('Login error:', error);
+        }
+        catch (error) {
             setError('An unexpected error occurred.');
         }
     };
@@ -68,11 +69,11 @@ const LoginForm = () => {
                     />
                 </div>
 
-                <div className="text-center font-bold mt-2 text-red-600">
-                    {error && <p>Error: {error} </p>}
+                <div className="text-center font-bold mt-3 text-red-600">
+                    {error}
                 </div>
 
-                <div className="flex justify-center mt-5">
+                <div className="flex justify-center mt-4">
                     <Button type="submit" variant={'black'}>Login</Button>
                 </div>
                 <div className="text-center mt-2 mb-5">___________________________</div>

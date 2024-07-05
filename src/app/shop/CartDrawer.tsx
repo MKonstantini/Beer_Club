@@ -16,6 +16,7 @@ import {
     DrawerContent,
     Drawer,
 } from "@/components/ui/drawer"
+import { toast } from "sonner";
 
 interface CartDrawerProps {
     cart: CartItem[];
@@ -40,7 +41,7 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ cart, updateCartQuantity }) => 
                             cart.length > 0 ?
                                 <div className="w-2/3 h-full flex flex-col justify-between items-center">
                                     <CartTable cart={cart} updateCartQuantity={updateCartQuantity} />
-                                    <Button variant={'black'} className="hover:bg-white my-6 md:w-1/2">Continue To Purchase</Button>
+                                    <Button variant={'black'} className="hover:bg-white my-6 md:w-1/2" onClick={() => toast.info("Checkout in development.")}>Continue To Purchase</Button>
                                 </div>
                                 : <div>Cart Is Empty.</div>
                         }

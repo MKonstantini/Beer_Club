@@ -1,7 +1,11 @@
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-const SkeletonCard = ({ amount }: any) => {
+interface SkeletonCardProps {
+    amount: number;
+}
+
+const SkeletonCard: React.FC<SkeletonCardProps> = ({ amount }) => {
     console.log(amount)
     return (
         <SkeletonTheme baseColor='#8f8f8f' highlightColor='#505050'>
