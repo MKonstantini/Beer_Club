@@ -1,13 +1,15 @@
-"use client"
 import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { TitleFont } from "@/lib/fonts";
 import UserCard from "./UserCard";
 import { cn } from "@/lib/utils";
+import { getServerSession, Session } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/authOptions";
 
-const DashboardPage = () => {
-    const { data: session } = useSession()
+const DashboardPage = async () => {
+    const session: Session | null = await getServerSession(authOptions)
+    // const { data: session } = useSession()
 
     if (!session) {
         redirect('/')
@@ -28,7 +30,6 @@ const DashboardPage = () => {
                             <h1 className="mb-4">Your User Card</h1>
                             <UserCard />
                         </section>
-                        <Button className="mt-12" variant={"black"} onClick={() => console.log(session)}>Update User Info</Button>
                     </> :
                     <>
                         <h1>User Info Not Found</h1>

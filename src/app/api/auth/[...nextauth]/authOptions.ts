@@ -5,8 +5,8 @@ import GoogleProvider from "next-auth/providers/google";
 import bcrypt from "bcryptjs";
 import { db } from "@/lib/db";
 
-export const options: NextAuthOptions = {
-  pages: { signIn: "/signin" },
+export const authOptions: NextAuthOptions = {
+  pages: { signIn: "/signin", error: "/signin" },
   session: { strategy: "jwt" },
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
@@ -22,10 +22,10 @@ export const options: NextAuthOptions = {
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials) {
+      async authorize(credentials: any) {
         try {
           if (!credentials || !credentials.email) {
-            throw new Error("Invalid Credentials Format");
+            throw new Error("Invalid credentials format.");
           }
 
           const user = await getUserByEmail(

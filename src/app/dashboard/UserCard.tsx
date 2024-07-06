@@ -1,8 +1,9 @@
 import { User, Mail } from "lucide-react"
-import { useSession } from "next-auth/react"
+import { getServerSession, Session } from "next-auth"
+import { authOptions } from "../api/auth/[...nextauth]/authOptions"
 
-const UserCard = () => {
-    const { data: session } = useSession()
+const UserCard = async () => {
+    const session: Session | null = await getServerSession(authOptions)
 
     return (
         <div className="border border-black p-7 rounded-md bg-gradient-to-br from-slate-200 to-slate-300 shadow-md">

@@ -6,7 +6,6 @@ interface SkeletonCardProps {
 }
 
 const SkeletonCard: React.FC<SkeletonCardProps> = ({ amount }) => {
-    console.log(amount)
     return (
         <SkeletonTheme baseColor='#8f8f8f' highlightColor='#505050'>
             <div className='w-2/3 flex flex-wrap justify-around m-20'>

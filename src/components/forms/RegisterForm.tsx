@@ -20,10 +20,10 @@ const RegisterForm = () => {
     });
     const [error, setError] = useState<string | null>(null);
 
-    // form functions
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
+
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
         try {
