@@ -1,14 +1,15 @@
 import { redirect } from "next/navigation";
 import { TitleFont } from "@/lib/fonts";
-import UserCard from "./UserCard";
+import DisplayUserCard from "./DisplayUserCard";
 import { cn } from "@/lib/utils";
 import { getServerSession, Session } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/authOptions";
-import UserInfo from "./UserInfo";
-import AdminTools from "./AdminTools";
+import DisplayUserInfo from "./DisplayUserInfo";
+import DisplayAdminTools from "./DisplayAdminTools";
 import Ruler from "@/components/ui/ruler";
 import { Button } from "@/components/ui/button";
 import { User } from "lucide-react";
+import Link from "next/link";
 
 const DashboardPage = async () => {
     const session: Session | null = await getServerSession(authOptions)
@@ -31,23 +32,25 @@ const DashboardPage = async () => {
                     <div className="flex flex-col gap-20">
                         <section>
                             <h1 className="mb-4">Your User Card</h1>
-                            <UserCard />
+                            <DisplayUserCard />
                         </section>
                         <section>
                             <h1>User Info</h1>
                             <Ruler />
-                            <UserInfo user={session.user} />
+                            <DisplayUserInfo user={session.user} />
                             <div className="flex justify-center">
                                 <div className="flex gap-4">
                                     <Button variant={"black"}>Update Info</Button>
                                     <Button variant={"black"}>
                                         <User className="me-2" />
-                                        To Friend List
+                                        <Link href='/dashboard/friends'>
+                                            Friends List
+                                        </Link>
                                     </Button>
                                 </div>
                             </div>
                         </section>
-                        {session.user.type == "ADMIN" && <AdminTools />}
+                        {session.user.type == "ADMIN" && <DisplayAdminTools />}
                     </div> :
                     <h1>User Info Not Found</h1>
             }

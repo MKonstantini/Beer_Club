@@ -1,4 +1,4 @@
-import { User, Mail, DollarSign } from "lucide-react"
+import { Mail, DollarSign } from "lucide-react"
 import { getServerSession, Session } from "next-auth"
 import { authOptions } from "../api/auth/[...nextauth]/authOptions"
 

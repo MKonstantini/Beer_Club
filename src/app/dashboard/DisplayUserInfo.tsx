@@ -1,6 +1,4 @@
 "use client"
-import { Button } from "@/components/ui/button"
-import Ruler from "@/components/ui/ruler"
 import { User } from "@prisma/client"
 import moment from 'moment';
 
