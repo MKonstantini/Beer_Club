@@ -1,11 +1,14 @@
-import { Button } from "@/components/ui/button";
-import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { TitleFont } from "@/lib/fonts";
 import UserCard from "./UserCard";
 import { cn } from "@/lib/utils";
 import { getServerSession, Session } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/authOptions";
+import UserInfo from "./UserInfo";
+import AdminTools from "./AdminTools";
+import Ruler from "@/components/ui/ruler";
+import { Button } from "@/components/ui/button";
+import { User } from "lucide-react";
 
 const DashboardPage = async () => {
     const session: Session | null = await getServerSession(authOptions)
@@ -16,8 +19,8 @@ const DashboardPage = async () => {
     }
 
     return (
-        session && <div className="flex flex-col justify-center items-center mt-10 text-center">
-            <header className="mb-6">
+        session && <div className="flex flex-col justify-center items-center pt-10 text-center">
+            <header className="mb-10">
                 <div className="mb-6 flex justify-center border shadow-sm p-2 bg-amber-400 rounded-full uppercase">
                     <p>Your Settings, Your Way</p>
                 </div>
@@ -25,22 +28,28 @@ const DashboardPage = async () => {
             </header>
             {
                 session.user ?
-                    <>
+                    <div className="flex flex-col gap-20">
                         <section>
                             <h1 className="mb-4">Your User Card</h1>
                             <UserCard />
                         </section>
-                    </> :
-                    <>
-                        <h1>User Info Not Found</h1>
-                    </>
-            }
-            {
-                // session.user!.type == "ADMIN" &&
-                // <>
-                //     <h1>Admin Tools</h1>
-                //     <Button className="mt-12" variant={"black"}>Go To Admin Tools Page</Button>
-                // </>
+                        <section>
+                            <h1>User Info</h1>
+                            <Ruler />
+                            <UserInfo user={session.user} />
+                            <div className="flex justify-center">
+                                <div className="flex gap-4">
+                                    <Button variant={"black"}>Update Info</Button>
+                                    <Button variant={"black"}>
+                                        <User className="me-2" />
+                                        To Friend List
+                                    </Button>
+                                </div>
+                            </div>
+                        </section>
+                        {session.user.type == "ADMIN" && <AdminTools />}
+                    </div> :
+                    <h1>User Info Not Found</h1>
             }
         </div>
     )

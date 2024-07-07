@@ -1,4 +1,4 @@
-import { User, Mail } from "lucide-react"
+import { User, Mail, DollarSign } from "lucide-react"
 import { getServerSession, Session } from "next-auth"
 import { authOptions } from "../api/auth/[...nextauth]/authOptions"
 
@@ -12,13 +12,13 @@ const UserCard = async () => {
             </div>
             <div className="flex gap-3">
                 <Mail />
-                <p>Email:</p>
+                <p>Email :</p>
                 <p> {session!.user?.email}</p>
             </div>
             <div className="flex gap-3 mt-4">
-                <User />
-                <p>Type:</p>
-                <p>{session!.user?.type}</p>
+                <DollarSign />
+                <p>Store Credit :</p>
+                <p>{session!.user?.storeCredit}</p>
             </div>
         </div>
     )

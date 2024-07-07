@@ -1,10 +1,10 @@
 "use server";
-
 import { db } from "@/lib/db";
+import { User } from "@prisma/client";
 import bcrypt from "bcryptjs";
 
-// TYPE
-export type UserType = {
+// TYPES
+export type NewUserType = {
   email: string;
   password: string;
 };
@@ -26,7 +26,7 @@ export const getUserByEmail = async (email: string) => {
 };
 
 // CREATE
-export const createNewUser = async (data: UserType) => {
+export const createNewUser = async (data: NewUserType) => {
   try {
     const userExist = await db.user.findUnique({
       where: { email: data.email.toLowerCase() },
@@ -50,7 +50,7 @@ export const createNewUser = async (data: UserType) => {
 };
 
 // UPDATE
-export const updateUser = async (id: string, data: Partial<UserType>) => {
+export const updateUser = async (id: string, data: Partial<User>) => {
   try {
     const existingUser = db.user.findUnique({
       where: { id },

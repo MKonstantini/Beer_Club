@@ -1,15 +1,14 @@
 "use server";
 import { db } from "@/lib/db";
+import { Product } from "@prisma/client";
 import { Decimal } from "@prisma/client/runtime/library";
 
-export type ProductType = {
-  id: string;
+// TYPES
+export type NewProductType = {
   name: string;
   price: Decimal;
   detail: string | null;
   isOnSale: boolean;
-  createDate: Date;
-  updateDate: Date | null;
   img_reference: string | null;
 };
 
@@ -30,7 +29,7 @@ export const getProductById = async (id: string) => {
 };
 
 // CREATE
-export const createNewProduct = async (data: ProductType) => {
+export const createNewProduct = async (data: NewProductType) => {
   try {
     const productExist = await db.product.findUnique({
       where: { name: data.name.toLowerCase() },
@@ -47,7 +46,7 @@ export const createNewProduct = async (data: ProductType) => {
 };
 
 // UPDATE
-export const updateUser = async (id: string, data: Partial<ProductType>) => {
+export const updateUser = async (id: string, data: Partial<Product>) => {
   try {
     const existingProduct = db.product.findUnique({
       where: { id },

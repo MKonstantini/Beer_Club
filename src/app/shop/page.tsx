@@ -1,25 +1,25 @@
 "use client"
 import { getAllProducts } from "@/services/fetch-products";
-import { ProductType } from "@/services/fetch-products";
 import { useEffect, useState } from "react";
 import { TitleFont } from "@/lib/fonts";
 import ProductCard from "./ProductCard";
 import CartDrawer from "./CartDrawer";
 import { cn } from "@/lib/utils";
 import SkeletonCard from "./SkeletonCard";
+import { Product } from "@prisma/client";
 
 export interface CartItem {
-    product: ProductType;
+    product: Product;
     quantity: number;
 }
 
 const ShopPage = () => {
     const [isLoading, setIsLoading] = useState(true);
-    const [products, setProducts] = useState<ProductType[]>([]);
+    const [products, setProducts] = useState<Product[]>([]);
 
     // Cart state + functions
     const [cart, setCart] = useState<CartItem[]>([])
-    const addToCart = (product: ProductType, amount: number) => {
+    const addToCart = (product: Product, amount: number) => {
         const existingItem = cart.find((item) => item.product.id === product.id);
         existingItem ?
             setCart(

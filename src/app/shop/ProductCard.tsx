@@ -1,14 +1,14 @@
 "use client"
-import { ProductType } from "@/services/fetch-products"
 import { Button } from "@/components/ui/button"
 import { ShoppingCart } from "lucide-react"
 import { useState } from "react"
 import Image from "next/image"
 import { toast } from "sonner"
+import { Product } from "@prisma/client"
 
 interface ProductCardProps {
-    product: ProductType;
-    addToCart: (product: ProductType, amount: number) => void
+    product: Product;
+    addToCart: (product: Product, amount: number) => void
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, addToCart }) => {

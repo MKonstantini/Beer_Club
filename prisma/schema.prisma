@@ -8,28 +8,71 @@ datasource db {
 }
 
 model User {
-  id         String    @id @default(uuid())
-  type       UserType  @default(REGULAR)
-  email      String    @unique
-  password   String?
-  birthday   DateTime?
-  createDate DateTime  @default(now())
-  updateDate DateTime? @updatedAt
+  id          String       @id @default(uuid())
+  type        UserType     @default(REGULAR)
+  email       String       @unique
+  password    String?
+  birthday    DateTime?
+  createDate  DateTime     @default(now())
+  updateDate  DateTime?    @updatedAt
+  storeCredit Int          @default(0)
+  friends     Friendship[] @relation("UserFriendOf")
+  friendships Friendship[] @relation("UserFriends")
+  Order       Order[]
+}
+
+model Friendship {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    String
+  friendId  String
+  friend    User     @relation("UserFriendOf", fields: [friendId], references: [id])
+  user      User     @relation("UserFriends", fields: [userId], references: [id])
 }
 
 model Product {
-  id            String    @id @default(uuid())
-  name          String    @unique
-  price         Decimal
-  isOnSale      Boolean   @default(false)
-  createDate    DateTime  @default(now())
-  updateDate    DateTime? @updatedAt
-  img_reference String?
-  detail        String?
+  id             String           @id @default(uuid())
+  name           String           @unique
+  price          Decimal
+  isOnSale       Boolean          @default(false)
+  createDate     DateTime         @default(now())
+  updateDate     DateTime?        @updatedAt
+  img_reference  String?
+  detail         String?
+  ProductToOrder ProductToOrder[]
+}
+
+model Order {
+  id             String           @id @default(uuid())
+  userId         String
+  createdAt      DateTime         @default(now())
+  updateDate     DateTime?        @updatedAt
+  orderStatus    OrderStatus      @default(PENDING)
+  User           User             @relation(fields: [userId], references: [id])
+  ProductToOrder ProductToOrder[]
+}
+
+model ProductToOrder {
+  id         String    @id @default(uuid())
+  amount     Int
+  orderId    String
+  productId  String
+  createdAt  DateTime  @default(now())
+  updateDate DateTime? @updatedAt
+  Order      Order     @relation(fields: [orderId], references: [id])
+  Product    Product   @relation(fields: [productId], references: [id])
 }
 
 enum UserType {
   REGULAR
   PREMIUM
   ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  SHIPPED
+  DELIVERED
+  CANCELLED
 }
