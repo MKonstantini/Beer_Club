@@ -40,7 +40,11 @@ const DashboardPage = async () => {
                             <DisplayUserInfo user={session.user} />
                             <div className="flex justify-center">
                                 <div className="flex gap-4">
-                                    <Button variant={"black"}>Update Info</Button>
+                                    <Button variant={"black"}>
+                                        <Link href='/dashboard/updateinfo'>
+                                            Update Info
+                                        </Link>
+                                    </Button>
                                     <Button variant={"black"}>
                                         <User className="me-2" />
                                         <Link href='/dashboard/friends'>

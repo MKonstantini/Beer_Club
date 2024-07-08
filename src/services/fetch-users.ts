@@ -9,6 +9,12 @@ export type NewUserType = {
   password: string;
 };
 
+export type UpdateUserType = {
+  email: string;
+  fname: string;
+  lname: string;
+};
+
 // GET
 export const getAllUsers = async () => {
   try {
@@ -50,10 +56,10 @@ export const createNewUser = async (data: NewUserType) => {
 };
 
 // UPDATE
-export const updateUser = async (id: string, data: Partial<User>) => {
+export const updateUser = async (data: UpdateUserType) => {
   try {
     const existingUser = db.user.findUnique({
-      where: { id },
+      where: { email: data.email },
     });
 
     if (!existingUser) {
@@ -61,8 +67,12 @@ export const updateUser = async (id: string, data: Partial<User>) => {
     }
 
     return db.user.update({
-      where: { id },
-      data,
+      where: { email: data.email },
+      data: {
+        email: data.email.toLowerCase(),
+        fname: data.fname,
+        lname: data.lname,
+      },
     });
   } catch (err) {
     throw err;

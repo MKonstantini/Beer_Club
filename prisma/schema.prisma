@@ -11,6 +11,8 @@ model User {
   id          String       @id @default(uuid())
   type        UserType     @default(REGULAR)
   email       String       @unique
+  fname       String?      
+  lname       String?
   password    String?
   birthday    DateTime?
   createDate  DateTime     @default(now())
